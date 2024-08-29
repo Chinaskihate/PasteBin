@@ -31,17 +31,21 @@ services:
   text-api:
     container_name: pastebin-text-api
     build:
-      context: .
-      dockerfile: ../PasteBin.TextAPI/Dockerfile
+      context: ..
+      dockerfile: PasteBin.TextAPI/Dockerfile
     environment:
-      - ASPNETCORE_ENVIRONMENT=$ASPNETCORE_ENVIRONMENT
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
       - ASPNETCORE_URLS=http://+:5190;https://+:7190
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=${DEV_CERT_PASSWORD}
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/https-certificate.pfx
     ports:
       - "5190:5190"
       - "7190:7190"
     depends_on:
       - db
     restart: always
+    volumes:
+      - ../https-certificate.pfx:/https/https-certificate.pfx
 volumes:
   db:
   pg-admin:
