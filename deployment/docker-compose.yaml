@@ -1,0 +1,47 @@
+networks:
+  shared_network:
+    external: true
+services:
+  db:
+    container_name: pastebin-db
+    environment:
+      - POSTGRES_PASSWORD=${PG_PASSWORD}
+    image: postgres:15
+    ports:
+      - "5432:5432"
+    volumes:
+      - db:/var/lib/postgresql/data
+    networks:
+      - shared_network
+  pg-admin:
+    container_name: pastebin-pgadmin
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+    depends_on:
+      - db
+    volumes:
+      - pg-admin:/var/lib/pgadmin4/data
+    ports:
+      - "5050:80"
+    networks:
+      - shared_network
+  text-api:
+    container_name: pastebin-text-api
+    build:
+      context: .
+      dockerfile: ../PasteBin.TextAPI/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=$ASPNETCORE_ENVIRONMENT
+      - ASPNETCORE_URLS=http://+:5190;https://+:7190
+    ports:
+      - "5190:5190"
+      - "7190:7190"
+    depends_on:
+      - db
+    restart: always
+volumes:
+  db:
+  pg-admin:

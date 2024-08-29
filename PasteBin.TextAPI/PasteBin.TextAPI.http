@@ -1,0 +1,6 @@
+@PasteBin.TextAPI_HostAddress = http://localhost:5198
+
+GET {{PasteBin.TextAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
