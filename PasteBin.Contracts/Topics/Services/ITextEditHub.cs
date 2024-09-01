@@ -1,4 +1,4 @@
-﻿namespace PasteBin.Backend.Services;
+﻿namespace PasteBin.Contracts.Topics.Services;
 public interface ITextEditHub
 {
     public Task SendEditAsync(string topicId, string userId, string text);

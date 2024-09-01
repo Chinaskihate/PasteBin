@@ -3,15 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasteBin.Core", "PasteBin.Core\PasteBin.Core.csproj", "{D0602C1D-D645-40C7-A63A-EDBA2DF42764}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PasteBin.TextAPI", "PasteBin.TextAPI\PasteBin.TextAPI.csproj", "{90017D4C-9C26-420D-A0BB-A08D7C709F08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasteBin.TextAPI", "PasteBin.TextAPI\PasteBin.TextAPI.csproj", "{90017D4C-9C26-420D-A0BB-A08D7C709F08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PasteBin.Persistence", "PasteBin.Persistence\PasteBin.Persistence.csproj", "{DF61C4EF-E3C3-4DA5-BA30-B672A7A88015}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasteBin.Persistence", "PasteBin.Persistence\PasteBin.Persistence.csproj", "{DF61C4EF-E3C3-4DA5-BA30-B672A7A88015}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PasteBin.SignalR", "PasteBin.SignalR\PasteBin.SignalR.csproj", "{0C2F61AB-3931-495F-9F58-8681B06A8972}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasteBin.Backend", "PasteBin.Backend\PasteBin.Backend.csproj", "{C4C5E07B-B5E1-4F12-92DD-B403A5845C8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PasteBin.Contracts", "PasteBin.Contracts\PasteBin.Contracts.csproj", "{5A0CADF3-863E-490C-8CD6-1DC491155208}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasteBin.SignalR", "PasteBin.SignalR\PasteBin.SignalR.csproj", "{0C2F61AB-3931-495F-9F58-8681B06A8972}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PasteBin.Http", "PasteBin.Http\PasteBin.Http.csproj", "{0215CFB9-882F-47C1-BBDC-175B3DCFB97A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PasteBin.Serialization", "PasteBin.Serialization\PasteBin.Serialization.csproj", "{98A86C5C-FD11-4AF4-AF47-87970761593F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasteBin.Services", "PasteBin.Services\PasteBin.Services.csproj", "{D4E1A7CB-3C4D-4E7D-B148-AAE7608AA32E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +23,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D0602C1D-D645-40C7-A63A-EDBA2DF42764}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D0602C1D-D645-40C7-A63A-EDBA2DF42764}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D0602C1D-D645-40C7-A63A-EDBA2DF42764}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D0602C1D-D645-40C7-A63A-EDBA2DF42764}.Release|Any CPU.Build.0 = Release|Any CPU
 		{90017D4C-9C26-420D-A0BB-A08D7C709F08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{90017D4C-9C26-420D-A0BB-A08D7C709F08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90017D4C-9C26-420D-A0BB-A08D7C709F08}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -31,14 +31,26 @@ Global
 		{DF61C4EF-E3C3-4DA5-BA30-B672A7A88015}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF61C4EF-E3C3-4DA5-BA30-B672A7A88015}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF61C4EF-E3C3-4DA5-BA30-B672A7A88015}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C4C5E07B-B5E1-4F12-92DD-B403A5845C8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C4C5E07B-B5E1-4F12-92DD-B403A5845C8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C4C5E07B-B5E1-4F12-92DD-B403A5845C8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C4C5E07B-B5E1-4F12-92DD-B403A5845C8C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0C2F61AB-3931-495F-9F58-8681B06A8972}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0C2F61AB-3931-495F-9F58-8681B06A8972}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C2F61AB-3931-495F-9F58-8681B06A8972}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C2F61AB-3931-495F-9F58-8681B06A8972}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A0CADF3-863E-490C-8CD6-1DC491155208}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A0CADF3-863E-490C-8CD6-1DC491155208}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A0CADF3-863E-490C-8CD6-1DC491155208}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A0CADF3-863E-490C-8CD6-1DC491155208}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0215CFB9-882F-47C1-BBDC-175B3DCFB97A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0215CFB9-882F-47C1-BBDC-175B3DCFB97A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0215CFB9-882F-47C1-BBDC-175B3DCFB97A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0215CFB9-882F-47C1-BBDC-175B3DCFB97A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98A86C5C-FD11-4AF4-AF47-87970761593F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98A86C5C-FD11-4AF4-AF47-87970761593F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98A86C5C-FD11-4AF4-AF47-87970761593F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98A86C5C-FD11-4AF4-AF47-87970761593F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4E1A7CB-3C4D-4E7D-B148-AAE7608AA32E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4E1A7CB-3C4D-4E7D-B148-AAE7608AA32E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4E1A7CB-3C4D-4E7D-B148-AAE7608AA32E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4E1A7CB-3C4D-4E7D-B148-AAE7608AA32E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

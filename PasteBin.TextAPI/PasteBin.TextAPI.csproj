@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PasteBin.Http\PasteBin.Http.csproj" />
     <ProjectReference Include="..\PasteBin.SignalR\PasteBin.SignalR.csproj" />
   </ItemGroup>
 

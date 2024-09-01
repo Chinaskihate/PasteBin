@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.SignalR;
-using PasteBin.Backend.Services;
+using PasteBin.Backend.Services.Topics;
 
 namespace PasteBin.SignalR;
 
