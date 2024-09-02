@@ -3,5 +3,5 @@
 namespace PasteBin.Contracts.Topics.Services;
 public interface ITopicService
 {
-    Task<string> CreateTopicAsync(CreateTopicDto dto);
+    Task<string> CreateTopicAsync(CreateTopicDto dto, CancellationToken ct);
 }

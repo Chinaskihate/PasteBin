@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PasteBin.Serialization", "P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasteBin.Services", "PasteBin.Services\PasteBin.Services.csproj", "{D4E1A7CB-3C4D-4E7D-B148-AAE7608AA32E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasteBin.S3", "PasteBin.S3\PasteBin.S3.csproj", "{D611E838-CF45-4864-80BA-57A2129C2A84}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{D4E1A7CB-3C4D-4E7D-B148-AAE7608AA32E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4E1A7CB-3C4D-4E7D-B148-AAE7608AA32E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4E1A7CB-3C4D-4E7D-B148-AAE7608AA32E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D611E838-CF45-4864-80BA-57A2129C2A84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D611E838-CF45-4864-80BA-57A2129C2A84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D611E838-CF45-4864-80BA-57A2129C2A84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D611E838-CF45-4864-80BA-57A2129C2A84}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,8 @@
 ﻿namespace PasteBin.Contracts.Auth;
 public interface IUserContextService
 {
-    string UserId { get; }
+    string? UserId { get; }
+
+    bool IsAuthenticated { get; }
 }
 

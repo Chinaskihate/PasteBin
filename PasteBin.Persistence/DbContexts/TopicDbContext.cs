@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PasteBin.Persistence.Models.Topics;
 
 namespace PasteBin.Persistence.DbContexts;
 public class TopicDbContext : DbContext
@@ -12,4 +13,6 @@ public class TopicDbContext : DbContext
     {
         
     }
+
+    public DbSet<TopicMetadataModel> TopicMetadatas { get; set; }
 }

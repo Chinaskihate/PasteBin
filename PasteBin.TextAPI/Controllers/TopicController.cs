@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PasteBin.Backend.Services.Topics;
 using PasteBin.Contracts.Topics.Dto;
+using PasteBin.Contracts.Topics.Services;
 using PasteBin.Http.Controllers;
 
 namespace PasteBin.TextAPI.Controllers;
@@ -20,7 +20,7 @@ public class TopicController : DefaultController
     [AllowAnonymous]
     public async Task<IActionResult> CreateTopicAsync([FromBody] CreateTopicDto dto)
     {
-        var link = await _topicService.CreateTopicAsync(dto);
+        var link = await _topicService.CreateTopicAsync(dto, CancellationToken.None);
         return Success(link);
     }
 }

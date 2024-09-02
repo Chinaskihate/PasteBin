@@ -6,7 +6,7 @@ public class TextValidationService(int maxLength) : ITextValidationService
 {
     private readonly int _maxLength = maxLength;
 
-    public void ValidateText(string text)
+    public void ValidateText(string? text)
     {
         if (string.IsNullOrEmpty(text))
         {

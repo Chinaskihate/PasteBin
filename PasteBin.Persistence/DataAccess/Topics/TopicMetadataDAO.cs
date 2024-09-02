@@ -1,11 +1,26 @@
-﻿using PasteBin.Contracts.Topics;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using PasteBin.Contracts.Topics;
 using PasteBin.Contracts.Topics.Services;
+using PasteBin.Persistence.DbContexts;
+using PasteBin.Persistence.Models.Topics;
 
 namespace PasteBin.Persistence.DataAccess.Topics;
-public class TopicMetadataDAO : ITopicMetadataDAO
+public class TopicMetadataDAO(
+    IDbContextFactory<TopicDbContext> dbContextFactory,
+    IMapper mapper) : ITopicMetadataDAO
 {
-    public Task<TopicMetadata> Create(TopicMetadata metadata)
+    private readonly IDbContextFactory<TopicDbContext> _dbContextFactory = dbContextFactory;
+    private readonly IMapper _mapper = mapper;
+
+    public async Task<TopicMetadata> CreateAsync(TopicMetadata metadata, CancellationToken ct)
     {
-        throw new NotImplementedException();
+        var model = _mapper.Map<TopicMetadataModel>(metadata);
+        using var context = _dbContextFactory.CreateDbContext();
+        context.TopicMetadatas.Add(model);
+
+        await context.SaveChangesAsync(ct);
+
+        return metadata;
     }
 }
