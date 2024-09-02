@@ -1,4 +1,5 @@
 using PasteBin.SignalR;
+using PasteBin.Logging.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSignalR();
+builder.Host.SerilogTo(SerilogOutputType.Console);
 
 var app = builder.Build();
 

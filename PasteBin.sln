@@ -15,9 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PasteBin.Http", "PasteBin.H
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PasteBin.Serialization", "PasteBin.Serialization\PasteBin.Serialization.csproj", "{98A86C5C-FD11-4AF4-AF47-87970761593F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasteBin.Services", "PasteBin.Services\PasteBin.Services.csproj", "{D4E1A7CB-3C4D-4E7D-B148-AAE7608AA32E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PasteBin.Services", "PasteBin.Services\PasteBin.Services.csproj", "{D4E1A7CB-3C4D-4E7D-B148-AAE7608AA32E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasteBin.S3", "PasteBin.S3\PasteBin.S3.csproj", "{D611E838-CF45-4864-80BA-57A2129C2A84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PasteBin.S3", "PasteBin.S3\PasteBin.S3.csproj", "{D611E838-CF45-4864-80BA-57A2129C2A84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasteBin.Logging", "PasteBin.Logging\PasteBin.Logging.csproj", "{F11F25BF-3BC1-46DC-B8B5-2917E382A154}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{D611E838-CF45-4864-80BA-57A2129C2A84}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D611E838-CF45-4864-80BA-57A2129C2A84}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D611E838-CF45-4864-80BA-57A2129C2A84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F11F25BF-3BC1-46DC-B8B5-2917E382A154}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F11F25BF-3BC1-46DC-B8B5-2917E382A154}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F11F25BF-3BC1-46DC-B8B5-2917E382A154}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F11F25BF-3BC1-46DC-B8B5-2917E382A154}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
