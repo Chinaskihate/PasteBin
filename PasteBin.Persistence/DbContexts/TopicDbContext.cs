@@ -4,7 +4,7 @@ using PasteBin.Persistence.Models.Topics;
 namespace PasteBin.Persistence.DbContexts;
 public class TopicDbContext : DbContext
 {
-    public TopicDbContext()
+    public TopicDbContext() : base()
     {
         
     }
@@ -15,4 +15,9 @@ public class TopicDbContext : DbContext
     }
 
     public DbSet<TopicMetadataModel> TopicMetadatas { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+    }
 }

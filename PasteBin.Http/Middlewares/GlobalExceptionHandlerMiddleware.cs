@@ -8,11 +8,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Net;
 
 namespace PasteBin.Http.Middlewares;
-internal class GlobalExceptionMiddleware(RequestDelegate next)
+internal class GlobalExceptionHandlerMiddleware(RequestDelegate next)
 {
     private readonly RequestDelegate _next = next;
 
-    public async Task Invoke(HttpContext context, ILogger<GlobalExceptionMiddleware> logger)
+    public async Task Invoke(HttpContext context, ILogger<GlobalExceptionHandlerMiddleware> logger)
     {
         try
         {
@@ -27,7 +27,7 @@ internal class GlobalExceptionMiddleware(RequestDelegate next)
     private Task HandleExceptionAsync(
         HttpContext context,
         Exception exception,
-        ILogger<GlobalExceptionMiddleware> logger)
+        ILogger<GlobalExceptionHandlerMiddleware> logger)
     {
         var code = HttpStatusCode.InternalServerError;
         switch (exception)

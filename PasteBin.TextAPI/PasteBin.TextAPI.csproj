@@ -10,13 +10,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PasteBin.Environment\PasteBin.Environment.csproj" />
     <ProjectReference Include="..\PasteBin.Http\PasteBin.Http.csproj" />
     <ProjectReference Include="..\PasteBin.Logging\PasteBin.Logging.csproj" />
+    <ProjectReference Include="..\PasteBin.Persistence\PasteBin.Persistence.csproj" />
+    <ProjectReference Include="..\PasteBin.S3\PasteBin.S3.csproj" />
+    <ProjectReference Include="..\PasteBin.Services\PasteBin.Services.csproj" />
     <ProjectReference Include="..\PasteBin.SignalR\PasteBin.SignalR.csproj" />
   </ItemGroup>
 

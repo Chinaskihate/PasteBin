@@ -11,19 +11,24 @@ public class MinioS3Client(IMinioClientFactory factory, string bucketName) : IS3
     public async Task SaveAsync(string objectName, byte[] data, CancellationToken ct)
     {
         using var client = _factory.CreateClient();
-        var bucketFound = await client.BucketExistsAsync(new BucketExistsArgs().WithBucket(_bucketName), ct);
+        var bucketFound = await client.BucketExistsAsync(new BucketExistsArgs()
+            .WithBucket(_bucketName), ct);
         if (!bucketFound)
         {
             await client.MakeBucketAsync(new MakeBucketArgs().WithBucket(_bucketName));
         }
 
         using var contentStream = new MemoryStream(data);
-        await client.PutObjectAsync(new PutObjectArgs()
+        var response = await client.PutObjectAsync(new PutObjectArgs()
             .WithBucket(_bucketName)
             .WithObject(objectName)
             .WithStreamData(contentStream)
             .WithObjectSize(contentStream.Length)
             .WithContentType("text/plain"));
+        if (string.IsNullOrEmpty(response.ObjectName))
+        {
+            throw new Exception();
+        }
     }
 
     public async Task<byte[]> ReadAsync(string objectName, CancellationToken ct)
