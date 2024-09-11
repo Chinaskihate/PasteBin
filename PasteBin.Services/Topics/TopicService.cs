@@ -10,12 +10,14 @@ public class TopicService(
     ITextValidationService validationService,
     ITopicMetadataDAO topicMetadataDAO,
     ITopicTextStorageService topicTextStorage,
-    IUserContextService userContextService) : ITopicService
+    IUserContextService userContextService,
+    ITextEditHub editHub) : ITopicService
 {
     private readonly ITextValidationService _validationService = validationService;
     private readonly ITopicMetadataDAO _topicMetadataDAO = topicMetadataDAO;
     private readonly ITopicTextStorageService _topicTextStorage = topicTextStorage;
     private readonly IUserContextService _userContextService = userContextService;
+    private readonly ITextEditHub _editHub = editHub;
 
     public async Task<string> CreateTopicAsync(CreateTopicDto dto, CancellationToken ct)
     {
@@ -33,6 +35,19 @@ public class TopicService(
         await _topicTextStorage.SaveTextAsync(topicMetadata.TopicId, dto.Text!, ct);
         scope.Complete();
 
+        await _editHub.SendEditAsync(
+            topicMetadata.TopicId.ToString(),
+            _userContextService.UserId,
+            dto.Text);
+
         return result.ShortUrl;
+    }
+
+    public async Task<string> GetTopicAsync(string shortUrl, CancellationToken ct)
+    {
+        var result = await _topicMetadataDAO.GetAsync(shortUrl, ct);
+        var text = await _topicTextStorage.GetTextAsync(result.TopicId, ct);
+
+        return text;
     }
 }

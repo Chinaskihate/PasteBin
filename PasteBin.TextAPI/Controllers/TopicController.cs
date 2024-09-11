@@ -23,4 +23,12 @@ public class TopicController : DefaultController
         var link = await _topicService.CreateTopicAsync(dto, CancellationToken.None);
         return Success(link);
     }
+    
+    [HttpGet("{shortUrl}")]
+    [AllowAnonymous]
+    public async Task<IActionResult> GetTopicAsync(string shortUrl)
+    {
+        var link = await _topicService.GetTopicAsync(shortUrl, CancellationToken.None);
+        return Success(link);
+    }
 }

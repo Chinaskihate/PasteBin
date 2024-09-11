@@ -40,6 +40,7 @@ builder.Services.AddScoped<IS3Client, MinioS3Client>(sp =>
     new MinioS3Client(sp.GetRequiredService<IMinioClientFactory>(), serviceSettings.TextBucketName));
 builder.Services.AddScoped<ITopicTextStorageService, TopicTextStorageService>();
 builder.Services.AddScoped<IUserContextService, UserContextService>();
+builder.Services.AddScoped<ITextEditHub, TextEditHubWrapper>();
 builder.Services.AddScoped<ITopicService, TopicService>();
 
 var app = builder.Build();

@@ -19,16 +19,12 @@ public class MinioS3Client(IMinioClientFactory factory, string bucketName) : IS3
         }
 
         using var contentStream = new MemoryStream(data);
-        var response = await client.PutObjectAsync(new PutObjectArgs()
+        await client.PutObjectAsync(new PutObjectArgs()
             .WithBucket(_bucketName)
             .WithObject(objectName)
             .WithStreamData(contentStream)
             .WithObjectSize(contentStream.Length)
-            .WithContentType("text/plain"));
-        if (string.IsNullOrEmpty(response.ObjectName))
-        {
-            throw new Exception();
-        }
+            .WithContentType("text/plain"), ct);
     }
 
     public async Task<byte[]> ReadAsync(string objectName, CancellationToken ct)
