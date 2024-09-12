@@ -19,7 +19,7 @@ public class TopicService(
     private readonly IUserContextService _userContextService = userContextService;
     private readonly ITextEditHub _editHub = editHub;
 
-    public async Task<string> CreateTopicAsync(CreateTopicDto dto, CancellationToken ct)
+    public async Task<TopicResponseDto> CreateTopicAsync(CreateTopicDto dto, CancellationToken ct)
     {
         _validationService.ValidateText(dto.Text);
 
@@ -41,14 +41,24 @@ public class TopicService(
             dto.Text,
             ct);
 
-        return result.ShortUrl;
+        return new TopicResponseDto
+        {
+            TopicId = topicMetadata.TopicId,
+            ShortUrl = topicMetadata.ShortUrl,
+            Text = dto.Text,
+        };
     }
 
-    public async Task<string> GetTopicAsync(string shortUrl, CancellationToken ct)
+    public async Task<TopicResponseDto> GetTopicAsync(string shortUrl, CancellationToken ct)
     {
         var result = await _topicMetadataDAO.GetAsync(shortUrl, ct);
         var text = await _topicTextStorage.GetTextAsync(result.TopicId, ct);
 
-        return text;
+        return new TopicResponseDto
+        {
+            TopicId = result.TopicId,
+            ShortUrl = result.ShortUrl,
+            Text = text,
+        };
     }
 }

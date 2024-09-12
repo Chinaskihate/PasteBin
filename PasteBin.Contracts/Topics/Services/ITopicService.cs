@@ -3,6 +3,6 @@
 namespace PasteBin.Contracts.Topics.Services;
 public interface ITopicService
 {
-    Task<string> CreateTopicAsync(CreateTopicDto dto, CancellationToken ct);
-    Task<string> GetTopicAsync(string shortUrl, CancellationToken ct);
+    Task<TopicResponseDto> CreateTopicAsync(CreateTopicDto dto, CancellationToken ct);
+    Task<TopicResponseDto> GetTopicAsync(string shortUrl, CancellationToken ct);
 }
