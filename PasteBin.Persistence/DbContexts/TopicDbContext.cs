@@ -18,6 +18,15 @@ public class TopicDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<TopicMetadataModel>()
+            .HasKey(m => m.TopicId);
+        modelBuilder.Entity<TopicMetadataModel>()
+            .HasIndex(m => m.ShortUrl)
+            .IsUnique();
+        modelBuilder.Entity<TopicMetadataModel>()
+            .Property(m => m.ShortUrl)
+            .HasMaxLength(50);
+
         base.OnModelCreating(modelBuilder);
     }
 }

@@ -38,7 +38,8 @@ public class TopicService(
         await _editHub.SendEditAsync(
             topicMetadata.TopicId.ToString(),
             _userContextService.UserId,
-            dto.Text);
+            dto.Text,
+            ct);
 
         return result.ShortUrl;
     }
