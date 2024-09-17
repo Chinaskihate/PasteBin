@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PasteBin.Contracts.Common;
+using PasteBin.Common;
 
 namespace PasteBin.Http.Controllers;
 public abstract class DefaultController : ControllerBase

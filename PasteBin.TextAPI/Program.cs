@@ -1,6 +1,6 @@
 using Minio;
+using PasteBin.Common.S3;
 using PasteBin.Contracts.Auth;
-using PasteBin.Contracts.S3;
 using PasteBin.Contracts.Text.Validation;
 using PasteBin.Contracts.Topics.Services;
 using PasteBin.Environment;

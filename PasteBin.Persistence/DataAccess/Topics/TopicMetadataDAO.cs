@@ -24,11 +24,11 @@ public class TopicMetadataDAO(
         return metadata;
     }
 
-    public async Task<TopicMetadata> GetAsync(string shortUrl, CancellationToken ct)
+    public async Task<TopicMetadata?> GetAsync(string shortUrl, CancellationToken ct)
     {
         using var context = _dbContextFactory.CreateDbContext();
-        var metadata = await context.TopicMetadatas.FirstAsync(m => m.ShortUrl == shortUrl, cancellationToken: ct);
+        var metadata = await context.TopicMetadatas.FirstOrDefaultAsync(m => m.ShortUrl == shortUrl, cancellationToken: ct);
 
-        return _mapper.Map<TopicMetadata>(metadata);
+        return metadata == null ? null : _mapper.Map<TopicMetadata>(metadata);
     }
 }

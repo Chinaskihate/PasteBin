@@ -6,9 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\PasteBin.Common\PasteBin.Common.csproj" />
-    <ProjectReference Include="..\PasteBin.Contracts\PasteBin.Contracts.csproj" />
-  </ItemGroup>
-
 </Project>

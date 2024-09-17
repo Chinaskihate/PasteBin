@@ -7,11 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Minio" Version="6.0.3" />
+    <PackageReference Include="StackExchange.Redis" Version="2.8.16" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PasteBin.Common\PasteBin.Common.csproj" />
     <ProjectReference Include="..\PasteBin.Contracts\PasteBin.Contracts.csproj" />
   </ItemGroup>
 

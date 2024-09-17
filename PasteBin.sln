@@ -19,9 +19,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PasteBin.Services", "PasteB
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PasteBin.S3", "PasteBin.S3\PasteBin.S3.csproj", "{D611E838-CF45-4864-80BA-57A2129C2A84}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasteBin.Logging", "PasteBin.Logging\PasteBin.Logging.csproj", "{F11F25BF-3BC1-46DC-B8B5-2917E382A154}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PasteBin.Logging", "PasteBin.Logging\PasteBin.Logging.csproj", "{F11F25BF-3BC1-46DC-B8B5-2917E382A154}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasteBin.Environment", "PasteBin.Environment\PasteBin.Environment.csproj", "{F900CD12-DA5C-4EC7-A04C-334DA3C8254A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PasteBin.Environment", "PasteBin.Environment\PasteBin.Environment.csproj", "{F900CD12-DA5C-4EC7-A04C-334DA3C8254A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasteBin.UrlGeneratorService", "PasteBin.UrlGeneratorService\PasteBin.UrlGeneratorService.csproj", "{6B43103B-F4EC-4589-8294-890201FB474A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasteBin.Common", "PasteBin.Common\PasteBin.Common.csproj", "{14AE4990-F998-43DA-8DE4-6970C674C225}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasteBin.Redis", "PasteBin.Redis\PasteBin.Redis.csproj", "{190B3F11-40F8-4CFC-943B-8E54A63D7217}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +75,18 @@ Global
 		{F900CD12-DA5C-4EC7-A04C-334DA3C8254A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F900CD12-DA5C-4EC7-A04C-334DA3C8254A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F900CD12-DA5C-4EC7-A04C-334DA3C8254A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B43103B-F4EC-4589-8294-890201FB474A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B43103B-F4EC-4589-8294-890201FB474A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B43103B-F4EC-4589-8294-890201FB474A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B43103B-F4EC-4589-8294-890201FB474A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14AE4990-F998-43DA-8DE4-6970C674C225}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14AE4990-F998-43DA-8DE4-6970C674C225}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14AE4990-F998-43DA-8DE4-6970C674C225}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14AE4990-F998-43DA-8DE4-6970C674C225}.Release|Any CPU.Build.0 = Release|Any CPU
+		{190B3F11-40F8-4CFC-943B-8E54A63D7217}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{190B3F11-40F8-4CFC-943B-8E54A63D7217}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{190B3F11-40F8-4CFC-943B-8E54A63D7217}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{190B3F11-40F8-4CFC-943B-8E54A63D7217}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

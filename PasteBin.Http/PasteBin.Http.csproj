@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PasteBin.Common\PasteBin.Common.csproj" />
     <ProjectReference Include="..\PasteBin.Contracts\PasteBin.Contracts.csproj" />
     <ProjectReference Include="..\PasteBin.Serialization\PasteBin.Serialization.csproj" />
   </ItemGroup>

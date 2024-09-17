@@ -1,6 +1,6 @@
 ﻿using Minio;
 using Minio.DataModel.Args;
-using PasteBin.Contracts.S3;
+using PasteBin.Common.S3;
 
 namespace PasteBin.S3.Minio;
 public class MinioS3Client(IMinioClientFactory factory, string bucketName) : IS3Client

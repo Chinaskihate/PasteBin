@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.Extensions.Logging;
-using PasteBin.Contracts.Common;
-using PasteBin.Contracts.Exceptions;
+using PasteBin.Common;
+using PasteBin.Common.Exceptions;
 using PasteBin.Serialization.Extensions;
 using System.ComponentModel.DataAnnotations;
 using System.Net;

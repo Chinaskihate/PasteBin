@@ -1,4 +1,5 @@
-﻿using PasteBin.Contracts.Auth;
+﻿using PasteBin.Common.Exceptions;
+using PasteBin.Contracts.Auth;
 using PasteBin.Contracts.Text.Validation;
 using PasteBin.Contracts.Topics;
 using PasteBin.Contracts.Topics.Dto;
@@ -51,7 +52,8 @@ public class TopicService(
 
     public async Task<TopicResponseDto> GetTopicAsync(string shortUrl, CancellationToken ct)
     {
-        var result = await _topicMetadataDAO.GetAsync(shortUrl, ct);
+        var result = await _topicMetadataDAO.GetAsync(shortUrl, ct)
+            ?? throw new NotFoundException($"Topic with {shortUrl} url not found");
         var text = await _topicTextStorage.GetTextAsync(result.TopicId, ct);
 
         return new TopicResponseDto

@@ -1,4 +1,4 @@
-﻿namespace PasteBin.Contracts.Common;
+﻿namespace PasteBin.Common;
 public class ResponseDto
 {
     public object? Result { get; set; }
