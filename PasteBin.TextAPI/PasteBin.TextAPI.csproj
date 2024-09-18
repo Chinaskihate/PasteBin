@@ -23,6 +23,7 @@
     <ProjectReference Include="..\PasteBin.Http\PasteBin.Http.csproj" />
     <ProjectReference Include="..\PasteBin.Logging\PasteBin.Logging.csproj" />
     <ProjectReference Include="..\PasteBin.Persistence\PasteBin.Persistence.csproj" />
+    <ProjectReference Include="..\PasteBin.Redis\PasteBin.Redis.csproj" />
     <ProjectReference Include="..\PasteBin.S3\PasteBin.S3.csproj" />
     <ProjectReference Include="..\PasteBin.Services\PasteBin.Services.csproj" />
     <ProjectReference Include="..\PasteBin.SignalR\PasteBin.SignalR.csproj" />

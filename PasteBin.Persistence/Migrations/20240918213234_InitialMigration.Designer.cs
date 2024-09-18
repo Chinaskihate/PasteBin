@@ -12,8 +12,8 @@ using PasteBin.Persistence.DbContexts;
 namespace PasteBin.Persistence.Migrations
 {
     [DbContext(typeof(TopicDbContext))]
-    [Migration("20240912011702_ChangeIdToGuid")]
-    partial class ChangeIdToGuid
+    [Migration("20240918213234_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

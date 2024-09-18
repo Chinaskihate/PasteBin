@@ -3,6 +3,7 @@ using PasteBin.Common.S3;
 using PasteBin.Contracts.Auth;
 using PasteBin.Contracts.Text.Validation;
 using PasteBin.Contracts.Topics.Services;
+using PasteBin.Contracts.Urls;
 using PasteBin.Environment;
 using PasteBin.Http.Auth;
 using PasteBin.Http.Extensions;
@@ -11,12 +12,16 @@ using PasteBin.Persistence.DataAccess.Topics;
 using PasteBin.Persistence.Extensions;
 using PasteBin.Persistence.Helpers;
 using PasteBin.Persistence.Mappings;
+using PasteBin.Redis.Extensions;
+using PasteBin.Redis.Urls;
 using PasteBin.S3.Extensions;
 using PasteBin.S3.Minio;
 using PasteBin.Services.Text;
 using PasteBin.Services.Topics;
+using PasteBin.Services.Urls;
 using PasteBin.SignalR;
 using PasteBin.TextAPI.Settings;
+using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,8 +42,12 @@ builder.Services.AddScoped<ITextValidationService, TextValidationService>(sp =>
 builder.Services.AddScoped<ITopicMetadataDAO, TopicMetadataDAO>();
 builder.Services.AddMinio(serviceSettings.Minio);
 builder.Services.AddScoped<IS3Client, MinioS3Client>(sp =>
-    new MinioS3Client(sp.GetRequiredService<IMinioClientFactory>(), serviceSettings.TextBucketName));
+    new MinioS3Client(sp.GetRequiredService<IMinioClientFactory>(),
+        serviceSettings.TextBucketName));
 builder.Services.AddScoped<ITopicTextStorageService, TopicTextStorageService>();
+builder.Services.AddRedis(serviceSettings.Redis);
+builder.Services.AddScoped<IUrlStorageService, UrlStorageService>(sp => new UrlStorageService(sp.GetRequiredService<IConnectionMultiplexer>(), serviceSettings.UrlSetName));
+builder.Services.AddScoped<IShortUrlGenerator, ShortUrlGenerator>();
 builder.Services.AddScoped<IUserContextService, UserContextService>();
 builder.Services.AddScoped<ITextEditHub, TextEditHubWrapper>();
 builder.Services.AddScoped<ITopicService, TopicService>();

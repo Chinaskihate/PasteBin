@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace PasteBin.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,13 +16,19 @@ namespace PasteBin.Persistence.Migrations
                 columns: table => new
                 {
                     TopicId = table.Column<Guid>(type: "uuid", nullable: false),
-                    ShortUrl = table.Column<string>(type: "text", nullable: false),
-                    CreatorId = table.Column<string>(type: "text", nullable: true)
+                    ShortUrl = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    CreatorId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TopicMetadatas", x => x.TopicId);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TopicMetadatas_ShortUrl",
+                table: "TopicMetadatas",
+                column: "ShortUrl",
+                unique: true);
         }
 
         /// <inheritdoc />

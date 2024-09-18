@@ -4,6 +4,7 @@ using PasteBin.Contracts.Text.Validation;
 using PasteBin.Contracts.Topics;
 using PasteBin.Contracts.Topics.Dto;
 using PasteBin.Contracts.Topics.Services;
+using PasteBin.Contracts.Urls;
 using System.Transactions;
 
 namespace PasteBin.Services.Topics;
@@ -11,12 +12,14 @@ public class TopicService(
     ITextValidationService validationService,
     ITopicMetadataDAO topicMetadataDAO,
     ITopicTextStorageService topicTextStorage,
+    IShortUrlGenerator shortUrlGenerator,
     IUserContextService userContextService,
     ITextEditHub editHub) : ITopicService
 {
     private readonly ITextValidationService _validationService = validationService;
     private readonly ITopicMetadataDAO _topicMetadataDAO = topicMetadataDAO;
     private readonly ITopicTextStorageService _topicTextStorage = topicTextStorage;
+    private readonly IShortUrlGenerator _shortUrlGenerator = shortUrlGenerator;
     private readonly IUserContextService _userContextService = userContextService;
     private readonly ITextEditHub _editHub = editHub;
 
@@ -27,7 +30,7 @@ public class TopicService(
         var topicMetadata = new TopicMetadata
         {
             TopicId = Guid.NewGuid(),
-            ShortUrl = Guid.NewGuid().ToString(),
+            ShortUrl = await _shortUrlGenerator.GenerateShortUrlAsync(ct),
             CreatorId = _userContextService.UserId,
         };
 
