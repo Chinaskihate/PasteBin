@@ -72,6 +72,15 @@ services:
       - shared_network
     volumes:
       - redis-data:/data
+  redisinsight:
+    container_name: pastebin-redisinsight
+    image: redis/redisinsight:latest
+    ports:
+      - "5540:5540"
+    depends_on:
+      - redis
+    networks:
+      - shared_network
 volumes:
   db:
   pg-admin:

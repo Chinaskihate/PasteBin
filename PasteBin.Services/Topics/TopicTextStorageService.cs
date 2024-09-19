@@ -1,4 +1,4 @@
-﻿using PasteBin.Common.S3;
+﻿using PasteBin.Common.Data.S3;
 using PasteBin.Contracts.Topics.Services;
 using System.Text;
 

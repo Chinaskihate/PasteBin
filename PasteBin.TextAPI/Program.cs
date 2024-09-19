@@ -1,5 +1,6 @@
 using Minio;
-using PasteBin.Common.S3;
+using PasteBin.Common.Data.KeyValuedDatabases;
+using PasteBin.Common.Data.S3;
 using PasteBin.Contracts.Auth;
 using PasteBin.Contracts.Text.Validation;
 using PasteBin.Contracts.Topics.Services;
@@ -13,7 +14,7 @@ using PasteBin.Persistence.Extensions;
 using PasteBin.Persistence.Helpers;
 using PasteBin.Persistence.Mappings;
 using PasteBin.Redis.Extensions;
-using PasteBin.Redis.Urls;
+using PasteBin.Redis.Sets;
 using PasteBin.S3.Extensions;
 using PasteBin.S3.Minio;
 using PasteBin.Services.Text;
@@ -46,7 +47,11 @@ builder.Services.AddScoped<IS3Client, MinioS3Client>(sp =>
         serviceSettings.TextBucketName));
 builder.Services.AddScoped<ITopicTextStorageService, TopicTextStorageService>();
 builder.Services.AddRedis(serviceSettings.Redis);
-builder.Services.AddScoped<IUrlStorageService, UrlStorageService>(sp => new UrlStorageService(sp.GetRequiredService<IConnectionMultiplexer>(), serviceSettings.UrlSetName));
+builder.Services.AddScoped<ISetStorageService, SetStorageService>(sp =>
+    new SetStorageService(
+            sp.GetRequiredService<IConnectionMultiplexer>(),
+            serviceSettings.UrlSetName));
+builder.Services.AddScoped<IUrlStorageService, UrlStorageService>();
 builder.Services.AddScoped<IShortUrlGenerator, ShortUrlGenerator>();
 builder.Services.AddScoped<IUserContextService, UserContextService>();
 builder.Services.AddScoped<ITextEditHub, TextEditHubWrapper>();
