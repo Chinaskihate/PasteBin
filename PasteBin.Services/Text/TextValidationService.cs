@@ -1,5 +1,6 @@
 ﻿using PasteBin.Contracts.Text.Validation;
 using System.ComponentModel.DataAnnotations;
+using PasteBin.Resources.Errors;
 
 namespace PasteBin.Services.Text;
 public class TextValidationService(int maxLength) : ITextValidationService
@@ -10,12 +11,12 @@ public class TextValidationService(int maxLength) : ITextValidationService
     {
         if (string.IsNullOrEmpty(text))
         {
-            throw new ValidationException($"Text must be not empty");
+            throw new ValidationException(Errors.TopicCannotBeEmpty);
         }
 
         if (text.Length > _maxLength)
         {
-            throw new ValidationException($"Number of characters should be less than {_maxLength}");
+            throw new ValidationException(string.Format(Errors.TopicIsTooLong, _maxLength));
         }
     }
 }

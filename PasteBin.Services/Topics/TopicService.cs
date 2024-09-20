@@ -6,6 +6,7 @@ using PasteBin.Contracts.Topics;
 using PasteBin.Contracts.Topics.Dto;
 using PasteBin.Contracts.Topics.Services;
 using PasteBin.Contracts.Urls;
+using PasteBin.Resources.Errors;
 using System.Transactions;
 
 namespace PasteBin.Services.Topics;
@@ -58,7 +59,7 @@ public class TopicService(
     public async Task<TopicResponseDto> GetTopicAsync(string shortUrl, CancellationToken ct)
     {
         var result = await _topicMetadataDAO.GetAsync(shortUrl, ct)
-            ?? throw new NotFoundException($"Topic with {shortUrl} url not found");
+            ?? throw new NotFoundException(string.Format(Errors.TopicNotFound, shortUrl));
         var text = await _topicTextStorage.GetTextAsync(result.TopicId, ct);
 
         return new TopicResponseDto
