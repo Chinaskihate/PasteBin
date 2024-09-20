@@ -6,4 +6,6 @@ public interface ISetStorageService
     public Task<string?> PopAsync(CancellationToken ct);
 
     public Task<bool> ContainsAsync(string value, CancellationToken ct);
+
+    public Task<long> GetLengthAsync(CancellationToken ct);
 }

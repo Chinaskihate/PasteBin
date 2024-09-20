@@ -42,6 +42,28 @@ services:
       - db
       - minio
       - redis
+      - url-generator
+    restart: always
+    volumes:
+      - ../https-certificate.pfx:/https/https-certificate.pfx
+    networks:
+      - shared_network
+  url-generator:
+    container_name: pastebin-url-generator
+    build:
+      context: ..
+      dockerfile: PasteBin.UrlGeneratorService/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - ASPNETCORE_URLS=http://+:5195;https://+:7195
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=${DEV_CERT_PASSWORD}
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/https-certificate.pfx
+    ports:
+      - "5195:5195"
+      - "7195:7195"
+    depends_on:
+      - db
+      - redis
     restart: always
     volumes:
       - ../https-certificate.pfx:/https/https-certificate.pfx

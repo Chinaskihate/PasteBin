@@ -11,7 +11,6 @@ using PasteBin.Http.Extensions;
 using PasteBin.Logging.Extensions;
 using PasteBin.Persistence.DataAccess.Topics;
 using PasteBin.Persistence.Extensions;
-using PasteBin.Persistence.Helpers;
 using PasteBin.Persistence.Mappings;
 using PasteBin.Redis.Extensions;
 using PasteBin.Redis.Sets;
@@ -38,21 +37,21 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddSignalR();
 builder.Host.SerilogTo(SerilogOutputType.Console);
 
+builder.Services.AddMinio(serviceSettings.Minio);
+builder.Services.AddRedis(serviceSettings.Redis);
+
 builder.Services.AddScoped<ITextValidationService, TextValidationService>(sp =>
     new TextValidationService(serviceSettings.MaxTopicTextLength));
 builder.Services.AddScoped<ITopicMetadataDAO, TopicMetadataDAO>();
-builder.Services.AddMinio(serviceSettings.Minio);
 builder.Services.AddScoped<IS3Client, MinioS3Client>(sp =>
     new MinioS3Client(sp.GetRequiredService<IMinioClientFactory>(),
         serviceSettings.TextBucketName));
 builder.Services.AddScoped<ITopicTextStorageService, TopicTextStorageService>();
-builder.Services.AddRedis(serviceSettings.Redis);
 builder.Services.AddScoped<ISetStorageService, SetStorageService>(sp =>
     new SetStorageService(
             sp.GetRequiredService<IConnectionMultiplexer>(),
             serviceSettings.UrlSetName));
-builder.Services.AddScoped<IUrlStorageService, UrlStorageService>();
-builder.Services.AddScoped<IShortUrlGenerator, ShortUrlGenerator>();
+builder.Services.AddScoped<IUrlConsumer, UrlConsumer>();
 builder.Services.AddScoped<IUserContextService, UserContextService>();
 builder.Services.AddScoped<ITextEditHub, TextEditHubWrapper>();
 builder.Services.AddScoped<ITopicService, TopicService>();
@@ -74,7 +73,5 @@ app.UseGlobalExceptionHandler();
 app.UseAuthorization();
 
 app.MapControllers();
-
-MigrationHelper.ApplyTopicMigration(app.Services);
 
 app.Run();

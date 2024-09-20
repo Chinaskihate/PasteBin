@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.Extensions.Logging;
 using PasteBin.Common;
 using PasteBin.Common.Exceptions;
+using PasteBin.Contracts.Exceptions;
 using PasteBin.Serialization.Extensions;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
@@ -37,6 +38,9 @@ internal class GlobalExceptionHandlerMiddleware(RequestDelegate next)
                 break;
             case NotFoundException:
                 code = HttpStatusCode.NotFound;
+                break;
+            case NoAvailableUrlException:
+                code = HttpStatusCode.ServiceUnavailable;
                 break;
         }
 

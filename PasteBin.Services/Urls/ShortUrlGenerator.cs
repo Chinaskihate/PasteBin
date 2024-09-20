@@ -4,10 +4,10 @@ using PasteBin.Contracts.Urls;
 namespace PasteBin.Services.Urls;
 public class ShortUrlGenerator(
     ITopicMetadataDAO topicMetadataDAO,
-    IUrlStorageService urlStorageService) : IShortUrlGenerator
+    IUrlProducer urlProducer) : IShortUrlGenerator
 {
     private readonly ITopicMetadataDAO _topicMetadataDAO = topicMetadataDAO;
-    private readonly IUrlStorageService _urlStorageService = urlStorageService;
+    private readonly IUrlProducer _urlProducer = urlProducer;
 
     public async Task<string> GenerateShortUrlAsync(CancellationToken ct)
     {
@@ -22,7 +22,7 @@ public class ShortUrlGenerator(
                 continue;
             }
 
-            if (await _urlStorageService.AddUrlAsync(url, ct))
+            if (await _urlProducer.CreateAsync(url, ct))
             {
                 break;
             }
@@ -39,5 +39,10 @@ public class ShortUrlGenerator(
                           .Replace("/", "_")
                           .TrimEnd('=');
         return base64[..8];
+    }
+
+    public async Task<long> GetNumberOfGeneratedUrls(CancellationToken ct)
+    {
+        return await _urlProducer.GetNumberOfUrlsAsync(ct);
     }
 }

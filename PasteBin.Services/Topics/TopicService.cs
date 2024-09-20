@@ -1,5 +1,6 @@
 ﻿using PasteBin.Common.Exceptions;
 using PasteBin.Contracts.Auth;
+using PasteBin.Contracts.Exceptions;
 using PasteBin.Contracts.Text.Validation;
 using PasteBin.Contracts.Topics;
 using PasteBin.Contracts.Topics.Dto;
@@ -12,14 +13,14 @@ public class TopicService(
     ITextValidationService validationService,
     ITopicMetadataDAO topicMetadataDAO,
     ITopicTextStorageService topicTextStorage,
-    IShortUrlGenerator shortUrlGenerator,
+    IUrlConsumer urlConsumer,
     IUserContextService userContextService,
     ITextEditHub editHub) : ITopicService
 {
     private readonly ITextValidationService _validationService = validationService;
     private readonly ITopicMetadataDAO _topicMetadataDAO = topicMetadataDAO;
     private readonly ITopicTextStorageService _topicTextStorage = topicTextStorage;
-    private readonly IShortUrlGenerator _shortUrlGenerator = shortUrlGenerator;
+    private readonly IUrlConsumer _urlConsumer = urlConsumer;
     private readonly IUserContextService _userContextService = userContextService;
     private readonly ITextEditHub _editHub = editHub;
 
@@ -30,7 +31,8 @@ public class TopicService(
         var topicMetadata = new TopicMetadata
         {
             TopicId = Guid.NewGuid(),
-            ShortUrl = await _shortUrlGenerator.GenerateShortUrlAsync(ct),
+            ShortUrl = await _urlConsumer.PopUrlAsync(ct)
+                ?? throw new NoAvailableUrlException(),
             CreatorId = _userContextService.UserId,
         };
 

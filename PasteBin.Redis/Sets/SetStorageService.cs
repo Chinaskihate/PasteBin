@@ -21,6 +21,12 @@ public class SetStorageService(
         return await db.SetContainsAsync(_urlSetName, value);
     }
 
+    public async Task<long> GetLengthAsync(CancellationToken ct)
+    {
+        var db = _redis.GetDatabase();
+        return await db.SetLengthAsync(_urlSetName);
+    }
+
     public async Task<string?> PopAsync(CancellationToken ct)
     {
         var db = _redis.GetDatabase();
