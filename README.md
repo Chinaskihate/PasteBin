@@ -1,20 +1,31 @@
-TODO:
-- логгер в эластик нормальный https://learn.microsoft.com/ru-ru/dotnet/core/extensions/logging?tabs=command-line
-- аутентификация
-- создание топика
-    - не проверять на каждом эдите юзера, проверка при джойне в группу
-    - сохранение содержимого частых топиков в кэш, бэкграунд сервис обновляет их в с3 периодично
-- локализация ресурсов (потом)
-- логгирование ef ?
-- шифрование паролей в appsettings/vault
-- метрики
-- при этом поставить задержку на апи чтоб не был пустым список урлов
-- мб потом перевод на hangfire
-- пофиксить регистрацию в GeneratorService (без синглтонов)
-- для прода нужен другой волт (не дев)
+#PasteBin
 
+This is non-official open source version of Pastebin.
 
-действия по развертке:
-1) в докере
-- выписать dotnet dev-cert в корневую папку проекта
-- расписать что нужно в .env файле
+## Current Features
+- Topic creation with content in s3 (minio)
+- Generation of short unique URLs in Redis
+- Real-time change of topic content (via websockets - SingalR)
+- Storing secrets in vault (dev version)
+
+### Installation
+1.  Install Docker
+2.  Put self-signed certificate (pfx) in root folder of the project
+3. In /deployment folder:
+	1. Fill .env file with actual values
+	2. Run docker compose up
+
+## TODO
+- Different roles in services (pg, minio, redis, vault) - now everywhere admin
+- topic ttl everywhere
+- what to do if there are no URLs in redis
+- move mountPoint(c# code) to env or settings
+- use normal vault version (not dev)
+- background task -> hangfire?
+- metrics
+- ef loggin
+- localize resources
+- authentication & authorization
+- topic creation
+	- dont check user on every edit, check only on join
+- more logs & [logs in elastic](https://learn.microsoft.com/ru-ru/dotnet/core/extensions/logging?tabs=command-line "logs in elastic")
