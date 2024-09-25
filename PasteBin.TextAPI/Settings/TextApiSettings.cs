@@ -1,4 +1,5 @@
 ﻿using PasteBin.Environment;
+using PasteBin.Persistence;
 using PasteBin.Redis;
 using PasteBin.S3.Minio.Settings;
 
@@ -12,4 +13,5 @@ public class TextApiSettings : ServiceSettings
     public RedisSettings? Redis { get; set; }
 
     public string? UrlSetName { get; set; }
+    public DbSettings? DbSettings { get; set; }
 }

@@ -33,6 +33,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
       - ASPNETCORE_URLS=http://+:5190;https://+:7190
+      - VAULT_ADDR=${VAULT_ADDR}
+      - VAULT_TOKEN=${VAULT_TOKEN}
       - ASPNETCORE_Kestrel__Certificates__Default__Password=${DEV_CERT_PASSWORD}
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/https-certificate.pfx
     ports:
@@ -55,6 +57,8 @@ services:
       dockerfile: PasteBin.UrlGeneratorService/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - VAULT_ADDR=${VAULT_ADDR}
+      - VAULT_TOKEN=${VAULT_TOKEN}
       - ASPNETCORE_URLS=http://+:5195;https://+:7195
       - ASPNETCORE_Kestrel__Certificates__Default__Password=${DEV_CERT_PASSWORD}
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/https-certificate.pfx
@@ -103,10 +107,29 @@ services:
       - redis
     networks:
       - shared_network
+  vault:
+    container_name: pastebin-vault
+    image: hashicorp/vault:latest
+    environment:
+      VAULT_DEV_ROOT_TOKEN_ID: ${VAULT_ROOT_TOKEN_ID}
+      VAULT_DEV_LISTEN_ADDRESS: "0.0.0.0:8200"
+      VAULT_ADDR: http://127.0.0.1:8200
+    env_file: .env
+    ports:
+      - "8200:8200"
+    volumes:
+      - vault-data:/vault/data
+      - ./vault-init.sh:/vault/config/vault-init.sh
+    command: /bin/sh -c "/vault/config/vault-init.sh"
+    cap_add:
+      - IPC_LOCK
+    networks:
+      - shared_network
 volumes:
   db:
   pg-admin:
   minio-data:
   redis-data:
+  vault-data:
 networks:
   shared_network:

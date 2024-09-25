@@ -22,8 +22,10 @@ using PasteBin.Services.Urls;
 using PasteBin.SignalR;
 using PasteBin.TextAPI.Settings;
 using StackExchange.Redis;
+using PasteBin.Environment.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.InsertVaultSettings();
 
 var serviceSettings = SettingsHelper.GetSettings<TextApiSettings>(builder.Configuration);
 
@@ -31,7 +33,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddTopicDbContextFactory(builder.Configuration.GetConnectionString("DefaultConnection"));
+builder.Services.AddTopicDbContextFactory(serviceSettings.DbSettings.ConnectionString);
 builder.Services.AddTopicMapper();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddSignalR();

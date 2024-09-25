@@ -14,13 +14,15 @@ using PasteBin.Services.Background;
 using PasteBin.Services.Urls;
 using PasteBin.UrlGeneratorService.Settings;
 using StackExchange.Redis;
+using PasteBin.Environment.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.InsertVaultSettings();
 
 var serviceSettings = SettingsHelper.GetSettings<UrlGeneratorServiceSettings>(builder.Configuration);
 
 builder.Host.SerilogTo(SerilogOutputType.Console);
-builder.Services.AddTopicDbContextFactory(builder.Configuration.GetConnectionString("DefaultConnection"));
+builder.Services.AddTopicDbContextFactory(serviceSettings.DbSettings.ConnectionString);
 builder.Services.AddTopicMapper();
 builder.Services.AddRedis(serviceSettings.Redis);
 
