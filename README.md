@@ -23,9 +23,10 @@ This is non-official open source version of Pastebin.
 - use normal vault version (not dev)
 - background task -> hangfire?
 - metrics
-- ef loggin
+- ef logging
 - localize resources
 - authentication & authorization
 - topic creation
 	- dont check user on every edit, check only on join
+	- cache most recent & edited topics
 - more logs & [logs in elastic](https://learn.microsoft.com/ru-ru/dotnet/core/extensions/logging?tabs=command-line "logs in elastic")
