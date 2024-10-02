@@ -17,7 +17,7 @@ This is non-official open source version of Pastebin.
 
 ## TODO
 - Different roles in services (pg, minio, redis, vault) - now everywhere admin
-- topic ttl everywhere
+- topic ttl everywhere (default and user defined)
 - what to do if there are no URLs in redis
 - move mountPoint(c# code) to env or settings
 - use normal vault version (not dev)
@@ -25,8 +25,11 @@ This is non-official open source version of Pastebin.
 - metrics
 - ef logging
 - localize resources
-- authentication & authorization
+- authentication & authorization - IN WORK
 - topic creation
 	- dont check user on every edit, check only on join
 	- cache most recent & edited topics
+	- closed topics (only for specified users)
+- tests (unit, integration, auto, load)
+- check multithread problems
 - more logs & [logs in elastic](https://learn.microsoft.com/ru-ru/dotnet/core/extensions/logging?tabs=command-line "logs in elastic")
